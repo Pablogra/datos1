@@ -1,0 +1,50 @@
+# Project: ProyectoFinalDatos1
+# Makefile created by Dev-C++ 5.2.0.1
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = cita.o doctor.o example.o listaEnlazada.o paciente.o ProyectoFinalDatos1.o usuario.o util.o $(RES)
+LINKOBJ  = cita.o doctor.o example.o listaEnlazada.o paciente.o ProyectoFinalDatos1.o usuario.o util.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc  
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" 
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" 
+BIN      = ProyectoFinalDatos1.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS   = $(INCS)  
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ProyectoFinalDatos1.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "ProyectoFinalDatos1.exe" $(LIBS)
+
+cita.o: cita.cpp
+	$(CPP) -c cita.cpp -o cita.o $(CXXFLAGS)
+
+doctor.o: doctor.cpp
+	$(CPP) -c doctor.cpp -o doctor.o $(CXXFLAGS)
+
+example.o: example.cpp
+	$(CPP) -c example.cpp -o example.o $(CXXFLAGS)
+
+listaEnlazada.o: listaEnlazada.cpp
+	$(CPP) -c listaEnlazada.cpp -o listaEnlazada.o $(CXXFLAGS)
+
+paciente.o: paciente.cpp
+	$(CPP) -c paciente.cpp -o paciente.o $(CXXFLAGS)
+
+ProyectoFinalDatos1.o: ProyectoFinalDatos1.cpp
+	$(CPP) -c ProyectoFinalDatos1.cpp -o ProyectoFinalDatos1.o $(CXXFLAGS)
+
+usuario.o: usuario.cpp
+	$(CPP) -c usuario.cpp -o usuario.o $(CXXFLAGS)
+
+util.o: util.cpp
+	$(CPP) -c util.cpp -o util.o $(CXXFLAGS)
