@@ -3,7 +3,7 @@
 #include <string>
 #include "usuario.h"
 
-
+//Define usuario
 Usuario* crearUsuario(
 	std::string nombre,
 	std::string apellido1,
@@ -13,6 +13,8 @@ Usuario* crearUsuario(
 	std::string cuentaDeUsuario,
 	std::string contrasena
 )
+
+//Constructor del usuario
 {
 	Usuario* nuevo_usuario = new Usuario();
 	nuevo_usuario->nombre = nombre;
@@ -26,7 +28,7 @@ Usuario* crearUsuario(
 	return nuevo_usuario;
 };
 
-
+//Para imprimir informacion del usuario
 void MostrarUsuario(Usuario* usuario)
 {
 	std::cout << "#################################################\n";
@@ -39,7 +41,7 @@ void MostrarUsuario(Usuario* usuario)
 	std::cout << "Activo: " << usuario->activo << ". \n";
 };
 
-
+//Solicita datos del usuario
 Usuario* IngresarDatosDelUsuario()
 {
 	//Variables de Usuario
@@ -59,17 +61,17 @@ Usuario* IngresarDatosDelUsuario()
 	std::cout << "2. User\n";
 	std::cout << "Opcion: ";
 	
-	
+	//Solicita tipo de usuario que debe crearse
 
 	std::cin >> opcionTipoDeUsuario;
 	
 	do {
 		switch (opcionTipoDeUsuario) {
 			case 1:
-				tipoDeUsuario = "Admin";
+				tipoDeUsuario = "A";
 				break;
 			case 2:
-				tipoDeUsuario = "User";
+				tipoDeUsuario = "E";
 				break;
 		}
 	} while (!(opcionTipoDeUsuario == 1 || opcionTipoDeUsuario == 2));
@@ -95,7 +97,7 @@ Usuario* IngresarDatosDelUsuario()
 	} 
 	while (!contrasenaValida);
 
-
+//Crea el usuario
 	Usuario* nuevo_usuario = crearUsuario(
 		nombre,
 		apellido1,

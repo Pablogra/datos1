@@ -21,7 +21,7 @@ Cita* crearCita(
 	std::string horaCita
 );
 
-
+// Este método imprime en la consola la información de una cita
 void MostrarCita(Cita* cita);
 
 Cita* IngresarDatosDeLaCita();

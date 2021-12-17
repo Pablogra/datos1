@@ -12,7 +12,7 @@ Lista* lista_crear(int datosSize) {
 	lista->cola = NULL;
 	return lista;
 }
-
+//lista doble para insertar nuevos nodos
 void lista_insertar(Lista* lista, void* datos) {	
 	Nodo* nuevoNodo = new Nodo();
 	nuevoNodo->datos = datos;
@@ -30,7 +30,7 @@ void lista_insertar(Lista* lista, void* datos) {
 	lista->contador++;
 }
 
-
+//Funcion para eliminar datos
 Nodo* lista_borrar(Lista* lista, void* datos, FuncionComparador comparador) {
 
 	Nodo* nodo_actual = lista->cabeza;
@@ -53,7 +53,7 @@ Nodo* lista_borrar(Lista* lista, void* datos, FuncionComparador comparador) {
 			else if (nodo_actual->siguiente == NULL) {
 				lista->cola = lista->cola->anterior;
 				lista->cola->siguiente = NULL;				
-			}
+			}//Nodo en cualquier sitio
 			else {
 				nodo_actual->anterior->siguiente = nodo_actual->siguiente;
 				nodo_actual->siguiente->anterior = nodo_actual->anterior;
@@ -68,7 +68,7 @@ Nodo* lista_borrar(Lista* lista, void* datos, FuncionComparador comparador) {
 	return NULL;
 }
 
-
+// Busca en la lista y contesta con bool si el comparador retorna true.
 bool lista_contiene(Lista* lista, void* datos, FuncionComparador comparador) {
 
 	Nodo* nodo = lista->cabeza;
@@ -79,7 +79,7 @@ bool lista_contiene(Lista* lista, void* datos, FuncionComparador comparador) {
 	}
 	return false;
 }
-
+//Busca en la lista que especifique el tipo de dato que se le pase en el parametro datos
 Nodo* lista_buscar(Lista* lista, void* datos, FuncionComparador comparador) {
 
 	Nodo* nodo = lista->cabeza;
@@ -92,6 +92,8 @@ Nodo* lista_buscar(Lista* lista, void* datos, FuncionComparador comparador) {
 	return NULL;
 }
 
+
+//Itera en la lista del tipo de dato que se le paso por parametro apra imprimir datos
 void lista_iterar(Lista* lista, FuncionParaIterador funcionParaIterador) {
 	int i = 0;
 	Nodo* nodo = lista->cabeza;

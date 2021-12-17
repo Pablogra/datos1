@@ -399,6 +399,8 @@ void MostrarTodosLosCodigos()
 	lista_iterar(codigos, MostrarCodigoDeLaLista);
 }
 
+// Busca un doctor basado en el codigo e imprime todas sus citas
+//  
 void MostrarTodasLasCitasParaDoctor(int codigo)
 {
 	Doctor* doctor = BuscarDoctor(codigo);
@@ -444,7 +446,7 @@ void ModificarPaciente(int cedula) {
 			cout << "8. Altura del Paciente\n";
 			cout << "9. Presion Arterial del Paciente\n";
 			cout << "10. Sintomas del Paciente\n";
-			cout << "11. Salir\n";
+			cout << "0. Salir\n";
 
 			cout << "Opcion: ";
 			cin >> opcion;
@@ -530,13 +532,13 @@ void ModificarPaciente(int cedula) {
 			}
 			//Limpiar pantalla
 			system("cls");
-		} while (opcion != 11);
+		} while (opcion != 0);
 
 	}
 	else {
-		cout << "El paciente con la cedula " << ced << " no a sido encontrado en la lista. \n";
+		cout << "El paciente con la cedula " << ced << " no ha sido encontrado en la lista. \n";
 	}
-}//Fin editarDatosPAciente
+}//************************************Fin editarDatosPAciente
 
 void ModificarCita(int codigo, int cedula) {
 
@@ -590,7 +592,7 @@ void ModificarCita(int codigo, int cedula) {
 	}
 	
 }
-
+//**************************************************************************************
 
 
 
@@ -640,6 +642,8 @@ Usuario* EliminarUsuario(int codigo) {
 		return NULL;
 	}
 }
+//***********************************************************************************************
+
 
 Cita* EliminarCita(int codigoDoctor, int cedula) {
 	Doctor* doctor = BuscarDoctor(codigoDoctor);
@@ -672,7 +676,7 @@ Cita* EliminarCita(int codigoDoctor, int cedula) {
 }
 
 
-
+//*************************************************************************************
 
 int CrearNuevoCodigo()
 {
@@ -749,6 +753,8 @@ void MenuPaciente()
 		//Cuando opcion sea distinto o igual a 0 se sale del sistema de Paciente
 	} while (opcion != 0);
 }
+//*******************************************************************************************
+
 
 void MenuPacientes_EditarPaciente()
 {
@@ -778,6 +784,10 @@ void MenuPacientes_EliminarPaciente()
 
 	cout << "\n\n";
 }
+//**********************************************************************************************
+
+
+
 
 void MenuPacientes_BuscarPaciente()
 {
@@ -808,14 +818,26 @@ void MenuPacientes_RegistrarPaciente()
 	Paciente* nuevo_paciente;
 	nuevo_paciente = IngresarDatosDelPaciente();
 	//Inseratar los datos del Paciente 
-	lista_insertar(pacientes, nuevo_paciente);
-	cout << "\n";
+	
+	bool existe = lista_contiene(
+		pacientes, 
+		ConvertirIntAVoid(nuevo_paciente->cedula),
+		BuscarPacientePorCedula);
+	
+	if (!existe) 
+	{
+		lista_insertar(pacientes, nuevo_paciente);	
+	}
+	else
+	{
+		cout << "\nPaciente ya existe\n";
+	}	
 	cout << "\n";
 }
 
 
 
-
+//*******************************************************************************************
 
 
 void MenuDoctores()
@@ -872,6 +894,11 @@ void MenuDoctores()
 		//Cuando opcion sea distinto o igual a 0 se sale del sistema
 	} while (opcion != 0);
 }
+
+//*************************************************************************************************
+
+
+
 void MenuDoctores_MostrarCitas()
 {
 	int codigoDoctor;
@@ -880,6 +907,10 @@ void MenuDoctores_MostrarCitas()
 	std::cin >> codigoDoctor;
 	MostrarTodasLasCitasParaDoctor(codigoDoctor);//Edita los datos del doctor			
 }
+
+//*********************************************************************************************
+
+
 void MenuDoctores_EliminarDoctor()
 {
 	if (EsAdmin())
@@ -896,6 +927,10 @@ void MenuDoctores_EliminarDoctor()
 	else
 		std::cout << "No authorizado \n";
 }
+
+//*********************************************************************************************
+
+
 void MenuDoctores_MostrarDoctores()
 {
 	cout << "\tLISTA DE DOCTORES: \n";//Muestra datos hacia el sistema <<
@@ -904,6 +939,8 @@ void MenuDoctores_MostrarDoctores()
 
 	cout << "\n\n";
 }
+
+
 void MenuDoctores_RegistraDoctor()
 {
 	if (EsAdmin())
@@ -917,6 +954,10 @@ void MenuDoctores_RegistraDoctor()
 	else
 		cout << "No authorizado \n";
 }
+
+
+
+//***********************************************************************************************
 // Metodo para modificar un Doctor
 // Busca un elemento en la lista y lo modifica por referencia
 void MenuDoctores_ModificarDoctor() {
@@ -941,8 +982,7 @@ void MenuDoctores_ModificarDoctor() {
 				std::cout << "1. Nombre del Doctor\n";
 				std::cout << "2. Primer Apellido del Doctor\n";
 				std::cout << "3. Segundo Apellido del Doctor\n";
-				std::cout << "4. Codigo del Doctor\n";
-				std::cout << "5. Especialidad del Doctor\n";;
+				std::cout << "4. Especialidad del Doctor\n";;
 				std::cout << "0. Salir\n";
 
 				std::cout << "Opcion: ";
@@ -966,11 +1006,6 @@ void MenuDoctores_ModificarDoctor() {
 					actual->apellido2 = apellido2Doctor;
 					break;
 				case 4:
-					std::cout << "Digite el codigo del Doctor:\n";
-					std::cin >> codigo;
-					actual->codigo = codigo;
-					break;
-				case 5:
 					std::cout << "Digite la especialidad del Doctor:\n";
 					std::cin >> especialidadDoctor;
 					actual->especialidad = especialidadDoctor;
@@ -1191,7 +1226,7 @@ void MenuUsuarios_ModificarUsuario()
 
 	}
 	else {
-		cout << "El Usuario con el codigo: " << codigo << " no a sido encontrado en la lista. \n";
+		cout << "El Usuario con el codigo: " << codigo << " no ha sido encontrado en la lista. \n";
 	}
 	cout << "\n\n";
 }
@@ -1246,10 +1281,10 @@ void MenuCitas_MostrarCita()
 {
 	int cedula, codigo;
 	cout << "\tEditar CITAS: \n";
-	cout << "Digite la cedula del Paciente que tiene la Cita a editar:\n";
+	cout << "Digite la cedula del Paciente:\n";
 	cin >> cedula;
 
-	cout << "Digite el codigo del Doctor que tiene la Cita a editar:\n";
+	cout << "Digite el codigo del Doctor que tiene la Cita:\n";
 	cin >> codigo;
 
 	MostrarCita(BuscarCita(codigo, cedula));

@@ -5,13 +5,14 @@
 
 
 
-
+//Definicion de cita
 Cita* crearCita(
 	int cedPaciente,
 	int codigoDoctor,
 	std::string fechaCita,
 	std::string horaCita
 )
+//Constructor de cita
 {
 	Cita* nueva_cita = new Cita();
 	nueva_cita->cedPaciente = cedPaciente;
@@ -22,7 +23,7 @@ Cita* crearCita(
 }
 
 
-
+//Imprime cita
 void MostrarCita(Cita* cita)
 {
 	std::cout << "#################################################\n";	
@@ -33,7 +34,7 @@ void MostrarCita(Cita* cita)
 };
 
 
-
+//Solicita datos de la cita
 Cita* IngresarDatosDeLaCita()
 {
 	//Variables de Cita
@@ -49,8 +50,9 @@ Cita* IngresarDatosDeLaCita()
 	std::cout << "Digite la fecha de la cita dd-mm-aaaa:\n";
 	std::cin >> fechaCita;
 	std::cout << "Digite la hora de la Cita:\n";
-	std::cin >> horaCita;	
-
+	std::cin >> horaCita;
+		
+//Crea nueva cita
 	Cita* nuevo_cita = crearCita(
 		cedulaPaciente,
 		codigoDoctor,

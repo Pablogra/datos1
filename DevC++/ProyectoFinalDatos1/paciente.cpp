@@ -3,7 +3,7 @@
 #include <string>
 #include "paciente.h"
 
-
+//definicion de paciente con sus respectivos datos
 Paciente* crearPaciente(
 	std::string  nombre,
 	std::string  apellido1,
@@ -33,7 +33,7 @@ Paciente* crearPaciente(
 	return nuevo_paciente;
 }
 
-
+//Imprime el paciente
 void MostrarPaciente(Paciente* paciente)
 {
 	std::cout << "#################################################";
@@ -50,7 +50,7 @@ void MostrarPaciente(Paciente* paciente)
 }
 
 
-
+//Solicita datos del peciente
 Paciente* IngresarDatosDelPaciente()
 {
 	int telefono, edad, cedula;
@@ -64,10 +64,42 @@ Paciente* IngresarDatosDelPaciente()
 	std::cin >> apellido1Paciente;
 	std::cout << "Digite el segundo apellido del Paciente:\n";
 	std::cin >> apellido2Paciente;
-	std::cout << "Digite la cedula del Paciente en formato x0xxx0xxx:\n";
-	std::cin >> cedula;
-	std::cout << "Digite el telefono del Paciente:\n";
-	std::cin >> telefono;
+	
+	
+	int cedulaValida = false;
+	do 
+	{
+		std::cout << "Digite la cedula del Paciente en formato x0xxx0xxx:\n";
+		std::cin >> cedula;
+		
+		if (cedula >= 100000000 && cedula <= 999999999)
+		{
+			//TODO: otras validaciones			
+			cedulaValida = true;
+		}
+		else
+			std::cout << "Cedula invalida, debe tener 9 caracteres\n\n";
+
+	} 
+	while (!cedulaValida);
+	
+	
+	int telefonoValido = false;
+	do 
+	{
+		std::cout << "Digite el telefono del Paciente:\n";
+		std::cin >> telefono;
+		
+		if (telefono >= 10000000 && telefono <= 99999999)
+		{
+			//TODO: otras validaciones
+			telefonoValido = true;
+		}
+		else
+			std::cout << "Telefono invalido, debe tener 8 caracteres\n\n";
+	} 
+	while (!telefonoValido);
+
 	std::cout << "Digite la fecha de nacimiento del Paciente dd-mm-aaaa:\n";
 	std::cin >> fechaNecimientoPaciente;
 	std::cout << "Digite la edad del Paciente:\n";
@@ -81,6 +113,7 @@ Paciente* IngresarDatosDelPaciente()
 	std::cout << "Digite los Sintomas del Paciente:\n";
 	std::cin >> sintomas;
 
+//Crea paciente
 	Paciente* nuevo_paciente = crearPaciente(
 		nombrePaciente,
 		apellido1Paciente,

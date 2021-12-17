@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
-
+//Definicion de usuario
 struct Usuario {
 	std::string nombre;
 	std::string apellido1;
